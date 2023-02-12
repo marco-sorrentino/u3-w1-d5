@@ -44,7 +44,7 @@ class Footer extends Component {
                   </div>
                 </div>
                 <div className="col">
-                  <div clasName="row">
+                  <div className="row">
                     <div className="col col-12 footer-links">
                       <p>
                         <a href="alt" alt="footer link">
