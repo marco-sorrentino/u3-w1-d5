@@ -13,6 +13,7 @@ class NewReleases extends Component {
   getData = async () => {
     try {
       const res = await fetch(
+        // Ps non è una delle mie saghe preferite
         "https://www.omdbapi.com/?apikey=3ac4f183&s=Twilight"
       );
       if (res.ok) {

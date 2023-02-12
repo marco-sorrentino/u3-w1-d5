@@ -10,7 +10,7 @@ class SubNav extends Component {
             <h2 className="mb-4">TV Shows</h2>
             <div className="dropdown ml-4 mt-1">
               <button
-                class="btn btn-secondary btn-sm dropdown-toggle rounded-0"
+                className="btn btn-secondary btn-sm dropdown-toggle rounded-0"
                 type="button"
                 id="dropdownMenuButton"
                 data-toggle="dropdown"
@@ -21,7 +21,7 @@ class SubNav extends Component {
                 Genres &nbsp;
               </button>
               <div
-                class="dropdown-menu bg-dark"
+                className="dropdown-menu bg-dark"
                 aria-labelledby="dropdownMenuButton"
               >
                 <a className="dropdown-item text-white bg-dark" href="alt">
@@ -37,8 +37,8 @@ class SubNav extends Component {
             </div>
           </div>
           <div>
-            <i class="fa fa-th-large icons"></i>
-            <i class="fa fa-th icons"></i>
+            <i className="fa fa-th-large icons"></i>
+            <i className="fa fa-th icons"></i>
           </div>
         </div>
       </Container>

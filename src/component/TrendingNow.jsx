@@ -2,14 +2,16 @@ import { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 
 class TrendingNow extends Component {
+  // Creo stato con array vuoto
   state = {
     film: [],
   };
-
+  // richiamp funzione fetch dentro il component per far eseguire una sola volta
   componentDidMount = () => {
     this.getData();
   };
 
+  // Faccio fetch
   getData = async () => {
     try {
       const res = await fetch(
@@ -17,8 +19,10 @@ class TrendingNow extends Component {
       );
       if (res.ok) {
         const data = await res.json();
+        // Creo una costante per entrare in Search e dunque lavorare su array
         const film = data.Search;
         console.log(film);
+        // Setto lo state passandogli i dati della chiamata
         this.setState({
           film: [film[0], film[1], film[2], film[3], film[4], film[5]],
         });
