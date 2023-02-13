@@ -45,7 +45,6 @@ class WatchItAgain extends Component {
           {this.state.isLoading && (
             <div>
               <Spinner as="span" animation="grow" size="sm" variant="danger" />
-              <span className="sr-only">Loading</span>
             </div>
           )}
         </Row>
