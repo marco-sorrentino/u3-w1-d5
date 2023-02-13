@@ -1,9 +1,10 @@
 import { Component } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Spinner } from "react-bootstrap";
 
 class WatchItAgain extends Component {
   state = {
     film: [],
+    isLoading: true,
   };
 
   componentDidMount = () => {
@@ -20,6 +21,7 @@ class WatchItAgain extends Component {
         const film = data.Search;
         this.setState({
           film: [film[0], film[1], film[2], film[3], film[4], film[5]],
+          isLoading: false,
         });
       }
     } catch (error) {
@@ -32,13 +34,20 @@ class WatchItAgain extends Component {
       <Container fluid>
         <h4>Watch it Again</h4>
         <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-6 mb-4 no-gutters text-center">
-          {this.state.film.map((el) => {
-            return (
-              <div key={el.imdbID} className="col mb-2 px-1">
-                <img className="img-fluid" src={el.Poster} alt="Movie Pic" />
-              </div>
-            );
-          })}
+          {!this.state.isLoading &&
+            this.state.film.map((el) => {
+              return (
+                <div key={el.imdbID} className="col mb-2 px-1">
+                  <img className="img-fluid" src={el.Poster} alt="Movie Pic" />
+                </div>
+              );
+            })}
+          {this.state.isLoading && (
+            <div>
+              <Spinner as="span" animation="grow" size="sm" variant="danger" />
+              <span className="sr-only">Loading</span>
+            </div>
+          )}
         </Row>
       </Container>
     );

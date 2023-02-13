@@ -1,10 +1,11 @@
 import { Component } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Container, Row, Spinner } from "react-bootstrap";
 
 class TrendingNow extends Component {
   // Creo stato con array vuoto
   state = {
     film: [],
+    isLoading: true,
   };
   // richiamp funzione fetch dentro il component per far eseguire una sola volta
   componentDidMount = () => {
@@ -25,6 +26,7 @@ class TrendingNow extends Component {
         // Setto lo state passandogli i dati della chiamata
         this.setState({
           film: [film[0], film[1], film[2], film[3], film[4], film[5]],
+          isLoading: false,
         });
       }
     } catch (error) {
@@ -37,13 +39,20 @@ class TrendingNow extends Component {
       <Container fluid>
         <h4>Trending Now</h4>
         <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-6 mb-4 no-gutters text-center">
-          {this.state.film.map((el) => {
-            return (
-              <div key={el.imdbID} className="col mb-2 px-1">
-                <img className="img-fluid" src={el.Poster} alt="Movie Pic" />
-              </div>
-            );
-          })}
+          {!this.state.isLoading &&
+            this.state.film.map((el) => {
+              return (
+                <div key={el.imdbID} className="col mb-2 px-1">
+                  <img className="img-fluid" src={el.Poster} alt="Movie Pic" />
+                </div>
+              );
+            })}
+          {this.state.isLoading && (
+            <div>
+              <Spinner as="span" animation="grow" size="sm" variant="danger" />
+              <span className="sr-only">Loading</span>
+            </div>
+          )}
         </Row>
       </Container>
     );
