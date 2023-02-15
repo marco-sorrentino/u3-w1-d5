@@ -6,15 +6,23 @@ import Footer from "./component/Footer";
 import TrendingNow from "./component/TrendingNow";
 import WatchItAgain from "./component/WatchItAgain";
 import NewReleases from "./component/NewReleases";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import TvShows from "./component/TvShows";
+import MovieDetails from "./component/MovieDetails";
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <SubNav />
-      <TrendingNow />
-      <WatchItAgain />
-      <NewReleases />
+      <BrowserRouter>
+        <NavBar />
+        <SubNav />
+
+        <Routes>
+          <Route path="/" element={<TrendingNow />} />
+          <Route path="/tv-shows" element={<TvShows />} />
+          <Route path="/film/:filmId/" element={<MovieDetails />} />
+        </Routes>
+      </BrowserRouter>
       <Footer />
     </div>
   );

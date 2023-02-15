@@ -1,9 +1,8 @@
 import { Component } from "react";
 import { Container, Row, Spinner } from "react-bootstrap";
-import NewReleases from "./NewReleases";
-import WatchItAgain from "./WatchItAgain";
+import { Link } from "react-router-dom";
 
-class TrendingNow extends Component {
+class TvShows extends Component {
   // Creo stato con array vuoto
   state = {
     film: [],
@@ -17,9 +16,7 @@ class TrendingNow extends Component {
   // Faccio fetch
   getData = async () => {
     try {
-      const res = await fetch(
-        "https://www.omdbapi.com/?apikey=3ac4f183&s=harry%20potter"
-      );
+      const res = await fetch("https://www.omdbapi.com/?apikey=3ac4f183&s=war");
       if (res.ok) {
         const data = await res.json();
         // Creo una costante per entrare in Search e dunque lavorare su array
@@ -27,7 +24,7 @@ class TrendingNow extends Component {
         console.log(film);
         // Setto lo state passandogli i dati della chiamata
         this.setState({
-          film: [film[0], film[1], film[2], film[3], film[4], film[5]],
+          film: film,
           isLoading: false,
         });
       }
@@ -44,9 +41,15 @@ class TrendingNow extends Component {
           {!this.state.isLoading &&
             this.state.film.map((el) => {
               return (
-                <div key={el.imdbID} className="col mb-2 px-1">
-                  <img className="img-fluid" src={el.Poster} alt="Movie Pic" />
-                </div>
+                <Link to={"/film/" + el.imdbID}>
+                  <div key={el.imdbID} className="col mb-2 px-1">
+                    <img
+                      className="img-fluid"
+                      src={el.Poster}
+                      alt="Movie Pic"
+                    />
+                  </div>
+                </Link>
               );
             })}
           {this.state.isLoading && (
@@ -55,11 +58,9 @@ class TrendingNow extends Component {
             </div>
           )}
         </Row>
-        <WatchItAgain />
-        <NewReleases />
       </Container>
     );
   }
 }
 
-export default TrendingNow;
+export default TvShows;
